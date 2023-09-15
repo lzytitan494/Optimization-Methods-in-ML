@@ -28,8 +28,8 @@ int main() {
     // Objective function
     double f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
 
-    // Partial derivative x1 - f'(x) = 2*a*x1 + c*x2 + d
-    // Partial derivative x1 - f'(x) = 2*b*x2 + c*x1 + e
+    // Partial derivative wrt x1 - f'(x) = 2*a*x1 + c*x2 + d
+    // Partial derivative wrt x2 - f'(x) = 2*b*x2 + c*x1 + e
     double df_x1 = 2*a*x1 + c*x2 + d;
     double df_x2 = 2*b*x2 + c*x1 + e;
 
