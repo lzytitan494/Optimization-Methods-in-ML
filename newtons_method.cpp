@@ -4,12 +4,12 @@ using namespace std;
 
 /*
 --> Newton's Method:
---> It finds the minimum of a quadratic funcion in a single step. (assumption: h_X is not singular and ∇f(x) != 0)
+--> It finds the minimum of a quadratic function in a single step. (assumption: h_X is not singular and ∇f(x) != 0)
 --> X_k+1 = X_k - H(x_k)⁻¹ * ∇f(x_k)
 */
 
 int main() {
-    // A general 2 variable quadratic fucntion - f(x) = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f
+    // A general 2 variable quadratic function - f(x) = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f
     // Function to be minimized - f(x) = 2*x1*x1 + x2*x2 + 2*x1*x2 + 1*x1 + -1*x2 + 0
     double a, b, c, d, e, f;
     a = 2;
@@ -39,8 +39,6 @@ int main() {
     // Gradient matrix
     vector<vector<double>> df_x = {{df_x1, df_x2}};
 
-    // Iteration count
-    int itr = 10;
 
     cout << "Newton's Method: \n";
     x = matrix_addition(x,matrix_constant_multiplication(-1, matrix_multiplication(df_x, matrix_inverse_2x2(h_x))));
@@ -58,4 +56,6 @@ int main() {
 
     f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
     cout << "Min value is: " << f_x << "\n";
+
+    return 0;
 }
