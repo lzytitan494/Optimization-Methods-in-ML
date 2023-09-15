@@ -3,16 +3,16 @@
 using namespace std;
 
 /*
-    Steepest Gradinet Descent:
+    Steepest Gradient Descent:
     1. Start at a point X_k.
-    2. Compute the gradient of the function at x_k, ∇f(x_k).
+    2. Compute the function's gradient at x_k, ∇f(x_k).
     3. Take a step in the opposite direction of the gradient, 
     x_k+1 = x_k + alpha * d_k -- alpha: step-size, d_k = - ∇f(x_k)
-    4. Repeat the step 2 and 3 until convergence.
+    4. Repeat steps 2 and 3 until convergence.
 */
 
 int main() {
-    // A general 2 variable quadratic fucntion - f(x) = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f
+    // A general 2 variable quadratic function - f(x) = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f
     // Function to be minimized - f(x) = 2*x1*x1 + x2*x2 + 2*x1*x2 + 1*x1 + -1*x2 + 0
     double a, b, c, d, e, f;
     a = 2;
@@ -78,4 +78,6 @@ int main() {
             break;
         }
     }
+
+    return 0;
 }
