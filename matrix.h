@@ -109,6 +109,19 @@ double matrix_to_constant(vector<vector<double>> m) {
     }
 }
 
+// magnitude of a vector
+double vector_magnitude_1xn_squared(vector<vector<double>> m) {
+    int n = m[0].size();
+
+    double result = 0;
+
+    for(int i=0; i<n; i++) {
+        result += m[0][i] * m[0][i];
+    }
+
+    return result;
+}
+
 // print matrix
 void print_matrix(vector<vector<double>> m) {
     int rows = m.size();
