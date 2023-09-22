@@ -31,8 +31,8 @@ int main() {
     // Objective function
     double f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
 
-    // Partial derivative wrt x1 - f'(x) = 2*a*x1 + c*x2 + d
-    // Partial derivative wrt x2 - f'(x) = 2*b*x2 + c*x1 + e
+    // Partial derivative x1 - f'(x) = 2*a*x1 + c*x2 + d
+    // Partial derivative x2 - f'(x) = 2*b*x2 + c*x1 + e
     double df_x1 = 2*a*x1 + c*x2 + d;
     double df_x2 = 2*b*x2 + c*x1 + e;
 
@@ -48,17 +48,19 @@ int main() {
     cout << "Steepest Gradient Descent: \n";
 
     for(int i=1; i<=itr; i++) {
-        vector<vector<double>> dk = matrix_constant_multiplication(-1, df_x);
-        double alpha = matrix_to_constant(matrix_multiplication(dk, matrix_transpose(dk))) /
-        matrix_to_constant(matrix_multiplication(dk, matrix_multiplication(h_x, matrix_transpose(dk))));
-        x = matrix_addition(x, matrix_constant_multiplication(alpha, dk));
+        cout << "\nK: " << i << "\n";
+        cout << "------------------------------\n";
+        vector<vector<double>> d_k = mx_constant_multiplication(-1, df_x);
+        double alpha = mx_to_constant(mx_multiplication(d_k, mx_transpose(d_k))) /
+        mx_to_constant(mx_multiplication(d_k, mx_multiplication(h_x, mx_transpose(d_k))));
+        x = mx_addition(x, mx_constant_multiplication(alpha, d_k));
         
         // displaying result
         cout <<"x"<<i<<": ";
         print_matrix(x);
         cout <<"alpha: "<<alpha<<"\n";
         cout <<"d"<<i<<": ";
-        print_matrix(x);
+        print_matrix(d_k);
         cout << "\n";
         
         x1 = x[0][0];
@@ -69,11 +71,11 @@ int main() {
         df_x = {{df_x1, df_x2}};
         cout << "∇f(x"<<i<<"): ";
         print_matrix(df_x);
-        cout << "\n";
+        cout <<"------------------------------\n";
         // optimality
         if((df_x1 == 0 && df_x2 == 0) || (abs(df_x1) + abs(df_x2) <= 0.01)) {
             f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
-            cout << "Optimality Reached\n"; 
+            cout << "\nOptimality Reached\n"; 
             cout << "Min value is: " << f_x << "\n";
             break;
         }

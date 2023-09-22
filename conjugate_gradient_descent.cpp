@@ -57,15 +57,17 @@ int main() {
     double B_k = 0;
 
     for(int i=1; i<=itr; i++) {
+        cout << "\nK: " << i << "\n";
+        cout << "------------------------------\n";
         if(i>1) B_k = vector_magnitude_1xn_squared(df_x) / vector_magnitude_1xn_squared(df_x_prev);
 
-        vector<vector<double>> b_d_k = matrix_constant_multiplication(B_k, d_k);
-        d_k = matrix_addition(matrix_constant_multiplication(-1, df_x), b_d_k);
+        vector<vector<double>> b_d_k = mx_constant_multiplication(B_k, d_k);
+        d_k = mx_addition(mx_constant_multiplication(-1, df_x), b_d_k);
 
-        double alpha = matrix_to_constant(matrix_multiplication(df_x, matrix_transpose(df_x))) /
-        matrix_to_constant(matrix_multiplication(d_k, matrix_multiplication(h_x, matrix_transpose(d_k))));
+        double alpha = mx_to_constant(mx_multiplication(df_x, mx_transpose(df_x))) /
+        mx_to_constant(mx_multiplication(d_k, mx_multiplication(h_x, mx_transpose(d_k))));
 
-        x = matrix_addition(x, matrix_constant_multiplication(alpha, d_k));
+        x = mx_addition(x, mx_constant_multiplication(alpha, d_k));
         
         // displaying result
         cout <<"x"<<i<<": ";
@@ -88,11 +90,11 @@ int main() {
         if(i>1){
             cout << "∇f(x"<<i-1<<"): "; print_matrix(df_x_prev);
         }
-        cout << "\n";
+        cout <<"------------------------------\n";
         // optimality
         if((df_x1 == 0 && df_x2 == 0) || (abs(df_x1) + abs(df_x2) <= 0.01)) {
             f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
-            cout << "Optimality Reached\n"; 
+            cout << "\nOptimality Reached\n"; 
             cout << "Min value is: " << f_x << "\n";
             break;
         }

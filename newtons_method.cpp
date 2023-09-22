@@ -3,9 +3,9 @@
 using namespace std;
 
 /*
---> Newton's Method:
---> It finds the minimum of a quadratic function in a single step. (assumption: h_X is not singular and ∇f(x) != 0)
---> X_k+1 = X_k - H(x_k)⁻¹ * ∇f(x_k)
+    Newton's Method:
+    It finds the minimum of a quadratic function in a single step. (assumption: h_X is not singular and ∇f(x) != 0)
+    --> X_k+1 = X_k - H(x_k)⁻¹ * ∇f(x_k)
 */
 
 int main() {
@@ -28,8 +28,8 @@ int main() {
     // Objective function
     double f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
 
-    // Partial derivative wrt x1 - f'(x) = 2*a*x1 + c*x2 + d
-    // Partial derivative wrt x2 - f'(x) = 2*b*x2 + c*x1 + e
+    // Partial derivative x1 - f'(x) = 2*a*x1 + c*x2 + d
+    // Partial derivative x2 - f'(x) = 2*b*x2 + c*x1 + e
     double df_x1 = 2*a*x1 + c*x2 + d;
     double df_x2 = 2*b*x2 + c*x1 + e;
 
@@ -41,7 +41,8 @@ int main() {
 
 
     cout << "Newton's Method: \n";
-    x = matrix_addition(x,matrix_constant_multiplication(-1, matrix_multiplication(df_x, matrix_inverse_2x2(h_x))));
+    cout << "\n------------------------------\n";
+    x = mx_addition(x,mx_constant_multiplication(-1, mx_multiplication(df_x, mx_inverse_2x2(h_x))));
     cout <<"x: ";
     print_matrix(x);
     cout<<"\n";
@@ -53,9 +54,10 @@ int main() {
     df_x = {{df_x1, df_x2}};
     cout << "∇f(x): ";
     print_matrix(df_x);
+    cout <<"------------------------------\n";
 
     f_x = a*x1*x1 + b*x2*x2 + c*x1*x2 + d*x1 + e*x2 + f;
-    cout << "Min value is: " << f_x << "\n";
+    cout << "\nMin value is: " << f_x << "\n";
 
     return 0;
 }

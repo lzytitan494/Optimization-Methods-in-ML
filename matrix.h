@@ -3,7 +3,7 @@
 using namespace std;
 
 // Transpose of a matrix
-vector<vector<double>> matrix_transpose(vector<vector<double>> m) {
+vector<vector<double>> mx_transpose(vector<vector<double>> m) {
     int rows = m.size();
     int cols = m[0].size();
 
@@ -19,7 +19,7 @@ vector<vector<double>> matrix_transpose(vector<vector<double>> m) {
 }
 
 // Matrix multiplication
-vector<vector<double>> matrix_multiplication(vector<vector<double>> m1, vector<vector<double>> m2) {
+vector<vector<double>> mx_multiplication(vector<vector<double>> m1, vector<vector<double>> m2) {
     int rows1 = m1.size();
     int cols1 = m1[0].size();
 
@@ -40,7 +40,7 @@ vector<vector<double>> matrix_multiplication(vector<vector<double>> m1, vector<v
 }
 
 // Multiply a constant with a matrix
-vector<vector<double>> matrix_constant_multiplication(double k, vector<vector<double>> m) {
+vector<vector<double>> mx_constant_multiplication(double k, vector<vector<double>> m) {
     int rows = m.size();
     int cols = m[0].size();
 
@@ -56,7 +56,7 @@ vector<vector<double>> matrix_constant_multiplication(double k, vector<vector<do
 }
 
 // Addition of two matrix
-vector<vector<double>> matrix_addition(vector<vector<double>> m1, vector<vector<double>> m2) {
+vector<vector<double>> mx_addition(vector<vector<double>> m1, vector<vector<double>> m2) {
     int rows1 = m1.size();
     int cols1 = m1[0].size();
 
@@ -79,13 +79,13 @@ vector<vector<double>> matrix_addition(vector<vector<double>> m1, vector<vector<
 }
 
 // Determinant of 2x2 matrix
-double matrix_determinant_2x2(vector<vector<double>> m) {
+double mx_determinant_2x2(vector<vector<double>> m) {
     return m[0][0] * m[1][1] - m[0][1] * m[1][0];
 }
 
 // Inverse of 2x2 matrix
-vector<vector<double>> matrix_inverse_2x2(vector<vector<double>> m) {
-    if(matrix_determinant_2x2(m) == 0) {
+vector<vector<double>> mx_inverse_2x2(vector<vector<double>> m) {
+    if(mx_determinant_2x2(m) == 0) {
         return {{0, 0}};
     } else {
         int rows = m.size();
@@ -96,12 +96,12 @@ vector<vector<double>> matrix_inverse_2x2(vector<vector<double>> m) {
         result[1][0] = -1 * m[1][0];
         result[1][1] = m[0][0];
 
-        return matrix_constant_multiplication(1 / matrix_determinant_2x2(m), result);
+        return mx_constant_multiplication(1 / mx_determinant_2x2(m), result);
     }
 }
 
 // 1x1 matrix to constant
-double matrix_to_constant(vector<vector<double>> m) {
+double mx_to_constant(vector<vector<double>> m) {
     if(m.size() == 1 && m[0].size() == 1) {
         return m[0][0];
     } else {
